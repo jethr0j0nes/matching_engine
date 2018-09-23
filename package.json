@@ -1,0 +1,30 @@
+{
+  "name": "matching-engine",
+  "version": "1.0.0",
+  "description": "Simple matching engine with rest api",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jethr0j0nes/matching_engine.git"
+  },
+  "author": "Jethro Jones",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jethr0j0nes/matching_engine/issues"
+  },
+  "homepage": "https://github.com/jethr0j0nes/matching_engine#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
