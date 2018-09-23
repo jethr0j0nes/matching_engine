@@ -116,7 +116,7 @@ app.post('/buy', (req, res) => {
   }
 )
 
-/** @dev Sell callbacks.
+/** @dev Sell routes and callbacks.
   */
 app.get('/sell', (req, res) => res.send('No post data received'))
 app.post('/sell', (req, res) => {
