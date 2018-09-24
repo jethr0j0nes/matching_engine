@@ -31,8 +31,7 @@ client.set('data', JSON.stringify(data), redis.print)
 
 /** @dev Get data stored in redis.
   * We do this aynchronously since we don't know how long the redis server will take to return.
-  * @param promise for getting redis store data.
-  * @return true.
+  * @return promise for getting redis store data.
   */
 function getStore() {
 
@@ -57,7 +56,7 @@ function updateStore(data) {
     return true
 }
 
-/** @dev Call back function for generic an book routes.
+/** @dev Call back function for generic and book routes.
   */
 const getBook = function (req, res) {
 
@@ -96,7 +95,7 @@ app.post('/buy', (req, res) => {
     // Make sure data is in the right format.
     qty = parseFloat(req.body.qty)
     prc = parseFloat(req.body.prc)
-    if (typeof qty != 'number' || typeof prc != 'number') {
+    if (typeof qty != 'number' || typeof prc != 'number' || qty <= 0 || prc <= 0) {
       res.send('Post data in the form: { qty: 10, prc: 15 } is required')
     }
 
@@ -128,7 +127,7 @@ app.post('/sell', (req, res) => {
     // Make sure data is in the right format.
     qty = parseFloat(req.body.qty)
     prc = parseFloat(req.body.prc)
-    if (typeof qty != 'number' || typeof prc != 'number') {
+    if (typeof qty != 'number' || typeof prc != 'number' || qty <= 0 || prc <= 0) {
       res.send('Post data in the form: { qty: 10, prc: 15 } is required')
     }
 
@@ -150,12 +149,11 @@ app.post('/sell', (req, res) => {
 )
 
 /** @dev  Transform data based on new sell parameters.
-  * @param qty  the number to sell.
+  * @param qty the number to sell.
   * @param prc the price at which to sell.
   * @return data the updated data object.
   */
 function doSell(data, qty, prc) {
-
 
   // Loop until we've allocated our full quantity.
   while (qty > 0) {
