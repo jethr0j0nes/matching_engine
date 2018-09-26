@@ -150,4 +150,25 @@ describe('matching engine', function() {
     res.body.sells[2]['qty'].should.equal(10)
     res.body.sells[2]['prc'].should.equal(15)
   });
+
+  it('should match a buy order with a sell order and add a buy order', async function() {
+    console.log("sell")
+    console.log({"qty":12,"prc":6})
+    await chai.request(server)
+      .post('/buy')
+      .send({"qty":12, "prc":6});
+
+    let res = await chai.request(server)
+      .get('/book')
+    console.log("book")
+    console.log(res.body)
+
+    expect(res).to.have.status(200);
+    res.body.buys[0]['qty'].should.equal(8)
+    res.body.buys[0]['prc'].should.equal(6)
+    res.body.sells[0]['qty'].should.equal(4)
+    res.body.sells[0]['prc'].should.equal(13)
+    res.body.sells[1]['qty'].should.equal(10)
+    res.body.sells[1]['prc'].should.equal(15)
+  });
 });

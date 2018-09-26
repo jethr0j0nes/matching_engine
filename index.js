@@ -219,7 +219,7 @@ function doBuy(data, qty, prc) {
         qty = qty - data.s[sellMatch]
         data.s[sellMatch] = 0
         // Remove from our sorted sell array
-        data.b.v.pop()
+        data.s.v.pop()
       }
       // Otherwise the buy has been covered
       else {
